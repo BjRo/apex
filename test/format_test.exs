@@ -34,4 +34,13 @@ defmodule AP.Format.Test do
     assert format(true, color: false) == "true\n"
     assert format(false, color: false) == "false\n"
   end
+
+  test "Can keyword list" do
+    assert format([first_name: "John", last_name: "Doe"], color: false) == """
+    [
+      [0] first_name: "John"
+      [1] last_name: "Doe"
+    ]
+    """
+  end
 end
