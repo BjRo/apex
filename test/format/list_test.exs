@@ -12,4 +12,17 @@ defmodule AP.Format.Test do
     ]
     """
   end
+
+  test "Can format a list containing a list" do
+    assert format(["a", "b", ["c", "d"]], color: false) == """
+    [
+      [0] "a"
+      [1] "b"
+      [2] [
+        [0] "c"
+        [1] "d"
+      ]
+    ]
+    """
+  end
 end

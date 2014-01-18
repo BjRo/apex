@@ -1,4 +1,6 @@
 defimpl AP.Format, for: BitString do
-  def format(data, _ // []), do: "\"#{data}\""
+  import AP.Format.Utils
+
+  def format(data, _ // []), do: "\"#{data}\"" <> new_line
 end
 
