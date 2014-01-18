@@ -29,4 +29,9 @@ defmodule AP.Format.Test do
   test "Can format integers" do
     assert format(1, color: false) == "1\n"
   end
+
+  test "Can format atoms" do
+    assert format(true, color: false) == "true\n"
+    assert format(false, color: false) == "false\n"
+  end
 end

@@ -12,5 +12,10 @@ defimpl AP.Format, for: Integer do
   def format(data, _ // []), do: "#{data}" <> new_line
 end
 
+defimpl AP.Format, for: Atom do
+  import AP.Format.Utils
+  def format(data, _ // []), do: "#{data}" <> new_line
+end
+
 
 
