@@ -6,4 +6,8 @@ defimpl AP.Format, for: Tuple do
   defp do_format({key, value}, options) when is_atom(key) do
     "#{key}: " <> AP.Format.format(value, options)
   end
+
+  defp do_format(data, options) do
+    tuple_to_list(data) |> AP.Format.Seq.format("{", "}", options)
+  end
 end

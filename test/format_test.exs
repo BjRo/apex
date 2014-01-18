@@ -35,12 +35,23 @@ defmodule AP.Format.Test do
     assert format(false, color: false) == "false\n"
   end
 
-  test "Can keyword list" do
+  test "Can format keyword list" do
     assert format([first_name: "John", last_name: "Doe"], color: false) == """
     [
       [0] first_name: "John"
       [1] last_name: "Doe"
     ]
+    """
+  end
+
+  test "Can format tuples" do
+    assert format({:first_name, "John", 1, true}, color: false) == """
+    {
+      [0] first_name
+      [1] "John"
+      [2] 1
+      [3] true
+    }
     """
   end
 end

@@ -1,9 +1,9 @@
-defimpl AP.Format, for: List do
+defmodule AP.Format.Seq do
   import AP.Format.Utils
 
-  def format(data, options // []) do
-    pre  =  "[#{new_line}"
-    post =  indent(options) <> "]#{new_line}"
+  def format(data, start_token, end_token, options // []) do
+    pre  =  start_token <> new_line
+    post =  indent(options) <> end_token <> new_line
     pre <> do_format(data, next_indent_level(options)) <> post
   end
 
