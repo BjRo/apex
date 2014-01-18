@@ -25,4 +25,8 @@ defmodule AP.Format.Test do
     ]
     """
   end
+
+  test "Can format integers" do
+    assert format(1, color: false) == "1\n"
+  end
 end
