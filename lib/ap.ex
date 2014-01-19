@@ -6,6 +6,6 @@ defmodule AP do
   end
 
   def ap(data, options // []) do
-    AP.Printer.print(data, options)
+    IO.puts AP.Format.format(data, options)
   end
 end

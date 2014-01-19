@@ -7,7 +7,7 @@ defmodule AP.Supervisor do
 
   def init([]) do
     children = [
-      worker(AP.Printer, [])
+      # worker(Ap.Worker, [])
     ]
 
     supervise(children, strategy: :one_for_one)
