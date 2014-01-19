@@ -10,6 +10,12 @@ defimpl AP.Format, for: Integer do
   def format(data, _ // []), do: "#{data}" <> AP.Format.Utils.new_line
 end
 
+defimpl AP.Format, for: Float do
+  def format(data, _ // []) do
+    "#{float_to_binary(data, decimals: 15, compact: true)}" <> AP.Format.Utils.new_line
+  end
+end
+
 defimpl AP.Format, for: Atom do
   def format(data, _ // []), do: "#{data}" <> AP.Format.Utils.new_line
 end
