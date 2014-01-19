@@ -64,4 +64,10 @@ defmodule AP.Format.Test do
     }
     """
   end
+
+  test "Can format ranges" do
+    assert format(1..2, color: false) == """
+    Elixir.Range 1..2
+    """
+  end
 end
