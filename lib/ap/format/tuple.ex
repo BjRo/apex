@@ -9,11 +9,11 @@ defimpl AP.Format, for: Tuple do
 
   defp do_format(data, options) do
     {pre, entries} = if function_exported?(data, :__record__, 1) do
-      { "#{data.__record__(:name)} {", data.to_keywords }
+      { "##{data.__record__(:name)} {", data.to_keywords }
     else
       { "{", tuple_to_list(data) }
     end
 
-    AP.Format.Seq.format(entries, pre, "}", options)
+    AP.Format.Seq.format(entries, options, start_token: pre, end_token: "}")
   end
 end

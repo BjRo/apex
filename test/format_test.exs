@@ -62,7 +62,7 @@ defmodule AP.Format.Test do
   defrecord User, first_name: nil, last_name: nil
   test "Can format records" do
     assert format(User.new(first_name: "John", last_name: "Doe"), color: false) == """
-    Elixir.AP.Format.Test.User {
+    #Elixir.AP.Format.Test.User {
       [0] first_name: "John"
       [1] last_name: "Doe"
     }
@@ -71,7 +71,7 @@ defmodule AP.Format.Test do
 
   test "Can format ranges" do
     assert format(1..2, color: false) == """
-    Elixir.Range 1..2
+    #Elixir.Range 1..2
     """
   end
 
@@ -82,5 +82,15 @@ defmodule AP.Format.Test do
   test "Can format function" do
     f = fn(a) -> "#{a}" end
     assert format(f, color: false) =~ %r(#Function<0.\d+ in AP.Format.Test.test Can format function/1>\n)
+  end
+
+  test "Can format Dicts" do
+    dict = HashDict.new(foo: "bar", baz: "fizz")
+    assert format(dict, color: false) == """
+    #HashDict <
+      baz: "fizz"
+      foo: "bar"
+    >
+    """
   end
 end
