@@ -54,4 +54,14 @@ defmodule AP.Format.Test do
     }
     """
   end
+
+  defrecord User, first_name: nil, last_name: nil
+  test "Can format records" do
+    assert format(User.new(first_name: "John", last_name: "Doe"), color: false) == """
+    Elixir.AP.Format.Test.User {
+      [0] first_name: "John"
+      [1] last_name: "Doe"
+    }
+    """
+  end
 end

@@ -17,3 +17,7 @@ end
 defimpl AP.Format, for: List do
   def format(data, options // []), do: AP.Format.Seq.format(data, "[", "]", options)
 end
+
+defimpl AP.Format, for: Record do
+  def format(data, options // []), do: "RECORD"
+end

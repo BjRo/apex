@@ -8,6 +8,23 @@ defimpl AP.Format, for: Tuple do
   end
 
   defp do_format(data, options) do
-    tuple_to_list(data) |> AP.Format.Seq.format("{", "}", options)
+    {pre, entries} = if function_exported?(data, :__record__, 1) do
+      { record_name, record_data } =  record_content(data)
+      { "#{record_name} {", record_data }
+    else
+      { "{", tuple_to_list(data) }
+    end
+
+    AP.Format.Seq.format(entries, pre, "}", options)
+  end
+
+  defp record_content(data) do
+    [ record_name | rest] = tuple_to_list(data)
+
+    record_data = data.__record__(:fields)
+      |> Enum.map(&elem(&1, 0))
+      |> Enum.zip(rest)
+
+    { record_name, record_data }
   end
 end
