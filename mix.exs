@@ -9,7 +9,7 @@ defmodule AP.Mixfile do
   end
 
   def application do
-    [mod: { AP, [] }]
+    []
   end
 
   defp deps do
