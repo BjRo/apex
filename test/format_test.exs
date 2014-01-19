@@ -93,4 +93,14 @@ defmodule AP.Format.Test do
     >
     """
   end
+
+  test "Can format HashSets" do
+    dict = HashSet.new(foo: "bar", baz: "fizz")
+    assert format(dict, color: false) == """
+    #HashSet <
+      baz: "fizz"
+      foo: "bar"
+    >
+    """
+  end
 end

@@ -52,3 +52,14 @@ defimpl AP.Format, for: HashDict do
       numbers: false)
   end
 end
+
+defimpl AP.Format, for: HashSet do
+  def format(data, options // []) do
+    AP.Format.Seq.format(
+      Set.to_list(data),
+      options,
+      start_token: "#HashSet <",
+      end_token: ">",
+      numbers: false)
+  end
+end
