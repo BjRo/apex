@@ -76,8 +76,11 @@ defmodule AP.Format.Test do
   end
 
   test "Can format pid" do
-    assert format(self, color: false) == """
-    #PID<0.71.0>
-    """
+    assert format(self, color: false) =~ %r(#PID<0.\d\d.0>\n)
+  end
+
+  test "Can format function" do
+    f = fn(a) -> "#{a}" end
+    assert format(f, color: false) =~ %r(#Function<0.\d+ in AP.Format.Test.test Can format function/1>\n)
   end
 end
