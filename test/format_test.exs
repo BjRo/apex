@@ -70,4 +70,10 @@ defmodule AP.Format.Test do
     Elixir.Range 1..2
     """
   end
+
+  test "Can format pid" do
+    assert format(self, color: false) == """
+    #PID<0.71.0>
+    """
+  end
 end

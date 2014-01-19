@@ -23,3 +23,9 @@ defimpl AP.Format, for: Range do
     "#{name} #{lower_bound}..#{upper_bound}" <> AP.Format.Utils.new_line
   end
 end
+
+defimpl AP.Format, for: PID do
+  def format(data, options // []) do
+    "#PID#{:erlang.pid_to_list(data)}" <> AP.Format.Utils.new_line
+  end
+end
