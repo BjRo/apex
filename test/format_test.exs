@@ -59,6 +59,17 @@ defmodule Apex.Format.Test do
     """
   end
 
+  test "Can format that don't start with an atom" do
+    assert format({1, "John", 1, true}, color: false) == """
+    {
+      [0] 1
+      [1] "John"
+      [2] 1
+      [3] true
+    }
+    """
+  end
+
   defrecord User, first_name: nil, last_name: nil
   test "Can format records" do
     assert format(User.new(first_name: "John", last_name: "Doe"), color: false) == """
