@@ -3,11 +3,15 @@ defprotocol Apex.Format do
 end
 
 defimpl Apex.Format, for: BitString do
-  def format(data, _ // []), do: "\"#{data}\"" <> Apex.Format.Utils.new_line
+  def format(data, _ // []) do
+    "\"#{data}\"" <> Apex.Format.Utils.new_line
+  end
 end
 
 defimpl Apex.Format, for: Integer do
-  def format(data, _ // []), do: "#{data}" <> Apex.Format.Utils.new_line
+  def format(data, _ // []) do
+    "#{data}" <> Apex.Format.Utils.new_line
+  end
 end
 
 defimpl Apex.Format, for: Float do
@@ -17,11 +21,15 @@ defimpl Apex.Format, for: Float do
 end
 
 defimpl Apex.Format, for: Atom do
-  def format(data, _ // []), do: "#{data}" <> Apex.Format.Utils.new_line
+  def format(data, _ // []) do
+    "#{data}" <> Apex.Format.Utils.new_line
+  end
 end
 
 defimpl Apex.Format, for: List do
-  def format(data, options // []), do: Apex.Format.Seq.format(data, options)
+  def format(data, options // []) do
+    Apex.Format.Seq.format(data, options)
+  end
 end
 
 defimpl Apex.Format, for: Range do
