@@ -4,6 +4,14 @@ defmodule Apex.Format.Utils do
 
   def new_line, do: "\n"
 
+  def colorize(str, data, options) do
+    if options[:color] == false do
+      str
+    else
+      Apex.Format.Color.colorize(str, data)
+    end
+  end
+
   def next_indent_level(options) do
     Keyword.update(options, :indent_level, 1, &( &1 + 1))
   end

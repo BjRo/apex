@@ -21,4 +21,8 @@ defmodule Apex.Format.Utils.Test do
     assert indent([indent_level: 2, indent: 1]) == "  "
     assert indent([indent_level: 3, indent: 1]) == "   "
   end
+
+  test "#colorize should not do anything when it's turned off" do
+    assert colorize("FOO", {}, color: false) == "FOO"
+  end
 end
