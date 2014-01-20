@@ -33,19 +33,19 @@ defimpl Apex.Format, for: List do
 end
 
 defimpl Apex.Format, for: Range do
-  def format({name, lower_bound, upper_bound}, options // []) do
+  def format({name, lower_bound, upper_bound}, _ // []) do
     "##{name} #{lower_bound}..#{upper_bound}" <> Apex.Format.Utils.new_line
   end
 end
 
 defimpl Apex.Format, for: PID do
-  def format(data, options // []) do
+  def format(data, _ // []) do
     inspect(data) <> Apex.Format.Utils.new_line
   end
 end
 
 defimpl Apex.Format, for: Function do
-  def format(data, options // []) do
+  def format(data, _ // []) do
     inspect(data) <> Apex.Format.Utils.new_line
   end
 end
