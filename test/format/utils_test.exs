@@ -1,4 +1,4 @@
-defmodule Apex.Format.List.Test do
+defmodule Apex.Format.Utils.Test do
   use ExUnit.Case
   import Apex.Format.Utils
 
