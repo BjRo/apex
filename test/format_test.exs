@@ -1,6 +1,6 @@
-defmodule AP.Format.Test do
+defmodule Apex.Format.Test do
   use ExUnit.Case
-  import AP.Format
+  import Apex.Format
 
   test "Can format a list of strings" do
     assert format(%w(a b c d), color: false) == """
@@ -62,7 +62,7 @@ defmodule AP.Format.Test do
   defrecord User, first_name: nil, last_name: nil
   test "Can format records" do
     assert format(User.new(first_name: "John", last_name: "Doe"), color: false) == """
-    #Elixir.AP.Format.Test.User {
+    #Elixir.Apex.Format.Test.User {
       [0] first_name: "John"
       [1] last_name: "Doe"
     }
@@ -81,7 +81,7 @@ defmodule AP.Format.Test do
 
   test "Can format function" do
     f = fn(a) -> "#{a}" end
-    assert format(f, color: false) =~ %r(#Function<0.\d+ in AP.Format.Test.test Can format function/1>\n)
+    assert format(f, color: false) =~ %r(#Function<0.\d+ in Apex.Format.Test.test Can format function/1>\n)
   end
 
   test "Can format Dicts" do

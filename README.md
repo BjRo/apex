@@ -17,8 +17,7 @@ Add to your mix.exs
 ### Usage ###
 
 ```elixir
-Ap.start_link
-import AP
+import Apex
 ap data
 ```
 

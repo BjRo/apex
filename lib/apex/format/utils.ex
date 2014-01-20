@@ -1,4 +1,4 @@
-defmodule AP.Format.Utils do
+defmodule Apex.Format.Utils do
   @default_indent 2
   @default_level 0
 

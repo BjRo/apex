@@ -1,5 +1,5 @@
-defmodule AP.Format.Seq do
-  import AP.Format.Utils
+defmodule Apex.Format.Seq do
+  import Apex.Format.Utils
 
   def format(data, options, config // []) do
     pre  =  start_token(config) <> new_line
@@ -15,7 +15,7 @@ defmodule AP.Format.Seq do
 
   defp do_format({entry, i}, options, config) do
     number = if numbers?(config), do: "[#{i}] ", else: ""
-    indent(options) <> number <> AP.Format.format(entry, options)
+    indent(options) <> number <> Apex.Format.format(entry, options)
   end
 
   defp start_token(config), do: config[:start_token] || "["
