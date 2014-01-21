@@ -9,22 +9,29 @@ Add to your mix.exs
 ```elixir
   defp deps do
     [
-      {:apex, "~>0.1", github: "bjro/apex"}
+      {:apex, "~>0.0.1", github: "bjro/apex"}
     ]
   end
-```
-
-### Usage ###
-
-```elixir
-import Apex
-ap data
 ```
 
 ### Examples ###
 
 ```elixir
-#TODO: Write examples
+data = [ false, 42, %w(forty two), [time: "now"]]
+Apex.ap data
+#[
+#    [0] false,
+#    [1] 42,
+#    [2] [
+#      [0] "forty",
+#      [1] "two"
+#    ],
+#    [3] [
+#      [0] time: "now"
+#    ]
+#]
+
+:ok
 ```
 
 ### Note on Patches/Pull Requests ###
