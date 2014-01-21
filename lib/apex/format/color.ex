@@ -9,9 +9,15 @@ defmodule Apex.Format.Color do
 
   def escape(text, color), do: do_escape(text, color)
 
-  defp color(data) when is_list(data),   do: :yellow
-  defp color(data) when is_tuple(data),  do: :blue
-  defp color(data) when is_binary(data), do: :red
+  defp color(data) when is_binary(data),   do: :yellowish
+  defp color(data) when is_atom(data),     do: :cyanish
+  defp color(data) when is_float(data),    do: :blue
+  defp color(data) when is_integer(data),  do: :blue
+  defp color(data) when is_function(data), do: :purpleish
+  defp color({Range, _, _}),               do: :greenish
+  defp color({HashSet, _, _}),             do: :whiteish
+  defp color({HashDict, _, _}),            do: :whiteish
+  defp color(nil),                         do: :red
   defp color(data), do: nil
 
   #   \e => escape

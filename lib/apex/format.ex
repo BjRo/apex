@@ -3,26 +3,34 @@ defprotocol Apex.Format do
 end
 
 defimpl Apex.Format, for: BitString do
-  def format(data, _ // []) do
-    "\"#{data}\"" <> Apex.Format.Utils.new_line
+  import Apex.Format.Utils
+
+  def format(data, options // []) do
+    colorize("\"#{data}\"", data, options) <> new_line
   end
 end
 
 defimpl Apex.Format, for: Integer do
-  def format(data, _ // []) do
-    "#{data}" <> Apex.Format.Utils.new_line
+  import Apex.Format.Utils
+
+  def format(data, options // []) do
+    colorize("#{data}", data, options) <> new_line
   end
 end
 
 defimpl Apex.Format, for: Float do
-  def format(data, _ // []) do
-    "#{float_to_binary(data, decimals: 15, compact: true)}" <> Apex.Format.Utils.new_line
+  import Apex.Format.Utils
+
+  def format(data, options // []) do
+    colorize("#{float_to_binary(data, decimals: 15, compact: true)}", data, options) <> new_line
   end
 end
 
 defimpl Apex.Format, for: Atom do
-  def format(data, _ // []) do
-    "#{data}" <> Apex.Format.Utils.new_line
+  import Apex.Format.Utils
+
+  def format(data, options // []) do
+    colorize("#{data}", data, options) <> new_line
   end
 end
 
@@ -33,41 +41,51 @@ defimpl Apex.Format, for: List do
 end
 
 defimpl Apex.Format, for: Range do
-  def format({name, lower_bound, upper_bound}, _ // []) do
-    "##{name} #{lower_bound}..#{upper_bound}" <> Apex.Format.Utils.new_line
+  import Apex.Format.Utils
+
+  def format(d = {name, lower_bound, upper_bound}, options // []) do
+    colorize("##{name} #{lower_bound}..#{upper_bound}", d, options) <> new_line
   end
 end
 
 defimpl Apex.Format, for: PID do
-  def format(data, _ // []) do
-    inspect(data) <> Apex.Format.Utils.new_line
+  import Apex.Format.Utils
+
+  def format(data, options // []) do
+    colorize(inspect(data), data, options) <> new_line
   end
 end
 
 defimpl Apex.Format, for: Function do
-  def format(data, _ // []) do
-    inspect(data) <> Apex.Format.Utils.new_line
+  import Apex.Format.Utils
+
+  def format(data, options // []) do
+    colorize(inspect(data), data, options) <> new_line
   end
 end
 
 defimpl Apex.Format, for: HashDict do
+  import Apex.Format.Utils
+
   def format(data, options // []) do
     Apex.Format.Seq.format(
       Dict.to_list(data),
       options,
       start_token: "#HashDict <",
       end_token: ">",
-      numbers: false)
+      numbers: false) |> colorize(data, options)
   end
 end
 
 defimpl Apex.Format, for: HashSet do
+  import Apex.Format.Utils
+
   def format(data, options // []) do
     Apex.Format.Seq.format(
       Set.to_list(data),
       options,
       start_token: "#HashSet <",
       end_token: ">",
-      numbers: false)
+      numbers: false) |> colorize(data, options)
   end
 end
