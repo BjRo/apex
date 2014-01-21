@@ -15,6 +15,7 @@ defmodule Apex.Format.Color do
   defp color(data) when is_integer(data),  do: :blue
   defp color(data) when is_function(data), do: :purpleish
   defp color(data) when is_list(data),     do: :white
+  defp color(data) when is_pid(data),      do: :yellow
   defp color({Range, _, _}),               do: :greenish
   defp color({HashSet, _, _}),             do: :whiteish
   defp color({HashDict, _, _}),            do: :whiteish
