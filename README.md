@@ -18,18 +18,20 @@ Add to your mix.exs
 
 ```elixir
 data = [ false, 42, %w(forty two), [time: "now"]]
+
 Apex.ap data
-#[
-#    [0] false,
-#    [1] 42,
-#    [2] [
-#      [0] "forty",
-#      [1] "two"
-#    ],
-#    [3] [
-#      [0] time: "now"
-#    ]
-#]
+
+[
+    [0] false,
+    [1] 42,
+    [2] [
+      [0] "forty",
+      [1] "two"
+    ],
+    [3] [
+      [0] time: "now"
+    ]
+]
 
 :ok
 ```
