@@ -98,20 +98,20 @@ defmodule Apex.Format.Test do
   test "Can format Dicts" do
     dict = HashDict.new(foo: "bar", baz: "fizz")
     assert format(dict, color: false) == """
-    #HashDict <
+    #HashDict<[
       baz: "fizz"
       foo: "bar"
-    >
+    ]>
     """
   end
 
   test "Can format HashSets" do
     dict = HashSet.new(foo: "bar", baz: "fizz")
     assert format(dict, color: false) == """
-    #HashSet <
+    #HashSet<[
       baz: "fizz"
       foo: "bar"
-    >
+    ]>
     """
   end
 end

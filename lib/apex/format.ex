@@ -71,8 +71,8 @@ defimpl Apex.Format, for: HashDict do
     Apex.Format.Seq.format(
       Dict.to_list(data),
       options,
-      start_token: "#HashDict <",
-      end_token: ">",
+      start_token: "#HashDict<[",
+      end_token: "]>",
       numbers: false) |> colorize(data, options)
   end
 end
@@ -84,8 +84,8 @@ defimpl Apex.Format, for: HashSet do
     Apex.Format.Seq.format(
       Set.to_list(data),
       options,
-      start_token: "#HashSet <",
-      end_token: ">",
+      start_token: "#HashSet<[",
+      end_token: "]>",
       numbers: false) |> colorize(data, options)
   end
 end
