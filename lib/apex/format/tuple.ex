@@ -7,12 +7,15 @@ defimpl Apex.Format, for: Tuple do
   end
 
   defp do_format({key, value}, options) when is_atom(key) do
-    "#{key}: " <> Apex.Format.format(value, options)
+    colorize("#{key}: ", key, options) <> Apex.Format.format(value, options)
   end
 
   defp do_format(data, options) when is_record(data) do
     {pre, entries} = if function_exported?(data, :__record__, 1) do
-      { "##{data.__record__(:name)} {", data.to_keywords }
+      {
+        colorize("##{data.__record__(:name)} {", data, options),
+        data.to_keywords
+      }
     else
       { "{", tuple_to_list(data) }
     end
