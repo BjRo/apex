@@ -1,9 +1,9 @@
 defmodule Apex.Format.Color do
-  def colorize(text, data) do
-    if color = color(data) do
-      escape(text, color)
-    else
-      text
+  def colorize(text, data, options \\ []) do
+    cond do
+      options[:color] == false -> text
+      color = color(data)      -> escape(text, color)
+      true                     -> text
     end
   end
 

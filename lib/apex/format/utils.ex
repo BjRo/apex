@@ -4,12 +4,8 @@ defmodule Apex.Format.Utils do
 
   def new_line, do: "\n"
 
-  def colorize(str, data, options) do
-    if options[:color] == false do
-      str
-    else
-      Apex.Format.Color.colorize(str, data)
-    end
+  def colorize(str, data, options \\ []) do
+    Apex.Format.Color.colorize(str, data, options)
   end
 
   def next_indent_level(options) do
