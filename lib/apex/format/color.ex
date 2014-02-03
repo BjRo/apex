@@ -20,22 +20,22 @@ defmodule Apex.Format.Color do
   defp color({HashSet, _, _}),             do: :whiteish
   defp color({HashDict, _, _}),            do: :whiteish
   defp color(nil),                         do: :red
-  defp color(data), do: nil
+  defp color(_), do: nil
 
   #   \e => escape
   #   30 => color base
   #    1 => bright
   #    0 => normal
   [
-    gray: :black,
-    red:  :darkred,
-    green: :darkgreen,
-    yellow: :brown,
-    blue: :navy,
-    purple: :darkmagenta,
-    cyan: :darkcyan,
-    white: :slategray
-  ] |> Stream.with_index |> Enum.each fn {{color, shade}, index} ->
+    :gray,
+    :red,
+    :green,
+    :yellow,
+    :blue,
+    :purple,
+    :cyan,
+    :white
+  ] |> Stream.with_index |> Enum.each fn {color, index} ->
       @index index
 
       def do_escape(text, unquote(color)) do
