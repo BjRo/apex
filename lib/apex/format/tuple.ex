@@ -2,7 +2,7 @@ defimpl Apex.Format, for: Tuple do
   import Apex.Format.Utils
   alias  Apex.Format.Seq
 
-  def format(data, options // [])  do
+  def format(data, options \\ [])  do
     do_format(data, options)
   end
 

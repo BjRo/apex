@@ -92,15 +92,15 @@ defmodule Apex.Format.Test do
 
   test "Can format function" do
     f = fn(a) -> "#{a}" end
-    assert format(f, color: false) =~ %r(#Function<0.\d+ in Apex.Format.Test.test Can format function/1>\n)
+    assert format(f, color: false) =~ %r(#Function<0.\d+/1 in Apex.Format.Test.test Can format function/1>\n)
   end
 
   test "Can format Dicts" do
     dict = HashDict.new(foo: "bar", baz: "fizz")
     assert format(dict, color: false) == """
     #HashDict<[
-      baz: "fizz"
       foo: "bar"
+      baz: "fizz"
     ]>
     """
   end
@@ -109,8 +109,8 @@ defmodule Apex.Format.Test do
     dict = HashSet.new(foo: "bar", baz: "fizz")
     assert format(dict, color: false) == """
     #HashSet<[
-      baz: "fizz"
       foo: "bar"
+      baz: "fizz"
     ]>
     """
   end
