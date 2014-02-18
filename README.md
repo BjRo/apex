@@ -9,7 +9,7 @@ Add to your mix.exs
 ```elixir
   defp deps do
     [
-      {:apex, "~>0.0.1", github: "bjro/apex"}
+      {:apex, "~>0.0.1", github: "BjRo/apex"}
     ]
   end
 ```
