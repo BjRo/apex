@@ -3,7 +3,7 @@ defmodule Apex.Format.Test do
   import Apex.Format
 
   test "Can format a list of strings" do
-    assert format(%w(a b c d), color: false) == """
+    assert format(~w(a b c d), color: false) == """
     [
       [0] "a"
       [1] "b"
@@ -87,12 +87,12 @@ defmodule Apex.Format.Test do
   end
 
   test "Can format pid" do
-    assert format(self, color: false) =~ %r(#PID<0.\d+.0>\n)
+    assert format(self, color: false) =~ ~r(#PID<0.\d+.0>\n)
   end
 
   test "Can format function" do
     f = fn(a) -> "#{a}" end
-    assert format(f, color: false) =~ %r(#Function<0.\d+/1 in Apex.Format.Test.test Can format function/1>\n)
+    assert format(f, color: false) =~ ~r(#Function<0.\d+/1 in Apex.Format.Test.test Can format function/1>\n)
   end
 
   test "Can format Dicts" do
