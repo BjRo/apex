@@ -1,4 +1,5 @@
 defprotocol Apex.Format do
+  @fallback_to_any true
   def format(data, options \\ [])
 end
 
@@ -98,6 +99,19 @@ defimpl Apex.Format, for: Map do
       Map.to_list(data),
       options,
       start_token: "\%{",
+      end_token: "}",
+      numbers: false) |> colorize(data, options)
+  end
+end
+
+defimpl Apex.Format, for: Any do
+  import Apex.Format.Utils
+
+  def format(data = %{__struct__: name}, options \\ []) when is_map(data) do
+    Apex.Format.Seq.format(
+      Map.delete(data, :__struct__) |> Map.to_list,
+      options,
+      start_token: "\%#{name}{",
       end_token: "}",
       numbers: false) |> colorize(data, options)
   end
