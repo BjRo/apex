@@ -4,12 +4,12 @@ exposing their internal structure with proper indentation. It's a port of part o
 of Ruby's awesome [awesome_print gem](https://github.com/michaeldv/awesome_print).
 
 ### Installation ###
-Add to your mix.exs
+In oder to install it via hex, add the reference to this package into the `deps` area of your `mix.exs`.
 
 ```elixir
   defp deps do
     [
-      {:apex, "~>0.0.1", github: "BjRo/apex"}
+      {:apex, "~>0.1.0" }
     ]
   end
 ```
@@ -17,24 +17,47 @@ Add to your mix.exs
 ### Examples ###
 
 ```elixir
-data = [ false, 42, %w(forty two), [time: "now"]]
+data = [ false, 42, ~w(forty two), [time: "now"], %{foo: :bar}]
 
 Apex.ap data
 
-[
-    [0] false,
-    [1] 42,
-    [2] [
-      [0] "forty",
-      [1] "two"
-    ],
-    [3] [
-      [0] time: "now"
-    ]
-]
-
-:ok
+# Will output the following:
+#[
+#   [0] false,
+#   [1] 42,
+#   [2] [
+#     [0] "forty",
+#     [1] "two"
+#   ],
+#   [3] [
+#     [0] time: "now"
+#   ]
+#   [4] %{
+#      foo: bar
+#   }
+#]
+#
+#:ok
 ```
+
+### Supported types
+
+* BitString
+* Integer
+* Float
+* Atom
+* List
+* Range
+* PID
+* Function
+* HashDict
+* HashSet
+* Map
+* Tuple
+* Elixir Records
+* Elixir Structs
+
+`Apex` uses a protocol internally to format a given value. If there's something not yet in the box, you can extend the protocol `Apex.Format`.
 
 ### Note on Patches/Pull Requests ###
 * Fork the project on Github.
