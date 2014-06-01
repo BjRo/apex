@@ -10,20 +10,13 @@ defimpl Apex.Format, for: Tuple do
     colorize("#{key}: ", key, options) <> Apex.Format.format(value, options)
   end
 
-  defp do_format(data, options) when is_record(data) do
-    {pre, entries} = if function_exported?(data, :__record__, 1) do
-      {
-        colorize("##{data.__record__(:name)} {", data, options),
-        data.to_keywords
-      }
-    else
-      { "{", tuple_to_list(data) }
-    end
-
-    Seq.format(entries, options, start_token: pre, end_token: "}")
-  end
-
   defp do_format(data, options) do
-    Seq.format(tuple_to_list(data), options, start_token: "{", end_token: "}")
+    hd = :erlang.element(1, data)
+
+    if is_atom(hd) && function_exported?(hd, :to_keywords, 1) do
+      Seq.format(data.to_keywords, options, start_token: "#{hd}[", end_token: "]")
+    else
+      Seq.format(tuple_to_list(data), options, start_token: "{", end_token: "}")
+    end
   end
 end

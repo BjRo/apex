@@ -10,6 +10,7 @@ defmodule Apex.Format.Color do
   def escape(text, color), do: do_escape(text, color)
 
   defp color(data) when is_binary(data),   do: :yellowish
+  defp color(data) when is_tuple(data),    do: :blue
   defp color(data) when is_atom(data),     do: :cyanish
   defp color(data) when is_float(data),    do: :blue
   defp color(data) when is_integer(data),  do: :blue

@@ -59,23 +59,13 @@ defmodule Apex.Format.Test do
     """
   end
 
-  test "Can format that don't start with an atom" do
+  test "Can format tuples that don't start with an atom" do
     assert format({1, "John", 1, true}, color: false) == """
     {
       [0] 1
       [1] "John"
       [2] 1
       [3] true
-    }
-    """
-  end
-
-  defrecord User, first_name: nil, last_name: nil
-  test "Can format records" do
-    assert format(User.new(first_name: "John", last_name: "Doe"), color: false) == """
-    #Elixir.Apex.Format.Test.User {
-      [0] first_name: "John"
-      [1] last_name: "Doe"
     }
     """
   end
@@ -96,9 +86,9 @@ defmodule Apex.Format.Test do
   end
 
   test "Can format Dicts" do
-    dict = HashDict.new(foo: "bar", baz: "fizz")
+    dict = HashDict.new |> Dict.put(:foo, "bar") |> Dict.put(:baz, "fizz")
     assert format(dict, color: false) == """
-    #HashDict<[
+    HashDict<[
       foo: "bar"
       baz: "fizz"
     ]>
@@ -106,12 +96,42 @@ defmodule Apex.Format.Test do
   end
 
   test "Can format HashSets" do
-    dict = HashSet.new(foo: "bar", baz: "fizz")
-    assert format(dict, color: false) == """
-    #HashSet<[
-      foo: "bar"
-      baz: "fizz"
+    set = HashSet.new |> HashSet.put(:foo) |> HashSet.put(:baz)
+    assert format(set, color: false) == """
+    HashSet<[
+      foo
+      baz
     ]>
+    """
+  end
+
+  defrecord User, first_name: nil, last_name: nil
+  test "Can format records" do
+    assert format(User.new(first_name: "John", last_name: "Doe"), color: false) == """
+    Elixir.Apex.Format.Test.User[
+      [0] first_name: "John"
+      [1] last_name: "Doe"
+    ]
+    """
+  end
+
+  test "Can format Maps" do
+    map = %{foo: "bar", bar: "baz"}
+    assert format(map, color: false) == """
+    %{
+      bar: "baz"
+      foo: "bar"
+    }
+    """
+  end
+
+  defmodule TestStruct, do: defstruct first_name: nil, last_name: nil
+  test "Can format structs" do
+    assert format(%TestStruct{first_name: "John", last_name: "Doe"} , color: false) == """
+    %Elixir.Apex.Format.Test.TestStruct{
+      first_name: "John"
+      last_name: "Doe"
+    }
     """
   end
 end

@@ -43,7 +43,7 @@ end
 defimpl Apex.Format, for: Range do
   import Apex.Format.Utils
 
-  def format(d = {name, lower_bound, upper_bound}, options \\ []) do
+  def format(d = %{__struct__: name, first: lower_bound, last: upper_bound}, options \\ []) do
     colorize("##{name} #{lower_bound}..#{upper_bound}", d, options) <> new_line
   end
 end
@@ -71,7 +71,7 @@ defimpl Apex.Format, for: HashDict do
     Apex.Format.Seq.format(
       Dict.to_list(data),
       options,
-      start_token: "#HashDict<[",
+      start_token: "HashDict<[",
       end_token: "]>",
       numbers: false) |> colorize(data, options)
   end
@@ -84,8 +84,21 @@ defimpl Apex.Format, for: HashSet do
     Apex.Format.Seq.format(
       Set.to_list(data),
       options,
-      start_token: "#HashSet<[",
+      start_token: "HashSet<[",
       end_token: "]>",
+      numbers: false) |> colorize(data, options)
+  end
+end
+
+defimpl Apex.Format, for: Map do
+  import Apex.Format.Utils
+
+  def format(data, options \\ []) do
+    Apex.Format.Seq.format(
+      Map.to_list(data),
+      options,
+      start_token: "\%{",
+      end_token: "}",
       numbers: false) |> colorize(data, options)
   end
 end

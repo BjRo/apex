@@ -3,7 +3,7 @@ defmodule Apex.Format.Color.Test do
   import Apex.Format.Color
 
   test "#colorize should color text based on the type" do
-    assert colorize("Tuple should be yellow", {}) == "\e[1;34mTuple should be yellow\e[0m"
+    assert colorize("Tuple should be blue", {}) == "\e[1;34mTuple should be blue\e[0m"
   end
 
   test "#escape generates the correct pattern matches" do
