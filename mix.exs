@@ -5,6 +5,9 @@ defmodule Apex.Mixfile do
     [ app: :apex,
       version: "0.0.2",
       elixir: "~> 0.13.3",
+      build_per_environment: false,
+      description: description,
+      package: package,
       deps: deps ]
   end
 
@@ -14,5 +17,19 @@ defmodule Apex.Mixfile do
 
   defp deps do
     []
+  end
+
+  def description do
+    "Elixir clone of Ruby's awesome_print gem"
+  end
+
+  def package do
+    [
+      contributors: ["Bjoern Rochel"],
+      licenses: ["The MIT License"],
+      links: %{
+        "GitHub" => "https://github.com/bjro/apex"
+      }
+    ]
   end
 end
