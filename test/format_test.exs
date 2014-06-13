@@ -48,17 +48,6 @@ defmodule Apex.Format.Test do
     """
   end
 
-  test "Can format tuples" do
-    assert format({:first_name, "John", 1, true}, color: false) == """
-    {
-      [0] first_name
-      [1] "John"
-      [2] 1
-      [3] true
-    }
-    """
-  end
-
   test "Can format tuples that don't start with an atom" do
     assert format({1, "John", 1, true}, color: false) == """
     {
@@ -105,13 +94,14 @@ defmodule Apex.Format.Test do
     """
   end
 
-  defrecord User, first_name: nil, last_name: nil
+  require Record
+  Record.defrecord :user, [first_name: nil, last_name: nil]
   test "Can format records" do
-    assert format(User.new(first_name: "John", last_name: "Doe"), color: false) == """
-    Elixir.Apex.Format.Test.User[
-      [0] first_name: "John"
-      [1] last_name: "Doe"
-    ]
+    assert format(user(first_name: "John", last_name: "Doe"), color: false) == """
+    user{
+      [0] "John"
+      [1] "Doe"
+    }
     """
   end
 
