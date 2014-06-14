@@ -9,7 +9,7 @@ In oder to install it via hex, add the reference to this package into the `deps`
 ```elixir
   defp deps do
     [
-      {:apex, "~>0.1.0" }
+      {:apex, "~>0.1.0"}
     ]
   end
 ```
@@ -17,7 +17,7 @@ In oder to install it via hex, add the reference to this package into the `deps`
 ### Examples ###
 
 ```elixir
-data = [ false, 42, ~w(forty two), [time: "now"], %{foo: :bar}]
+data = [false, 42, ~w(forty two), [time: "now"], %{foo: :bar}]
 
 Apex.ap data
 
