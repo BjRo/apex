@@ -9,7 +9,7 @@ In oder to install it via hex, add the reference to this package into the `deps`
 ```elixir
   defp deps do
     [
-      {:apex, "~>0.1.0"}
+      {:apex, "~>0.2.0"}
     ]
   end
 ```
