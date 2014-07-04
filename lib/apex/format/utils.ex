@@ -8,6 +8,13 @@ defmodule Apex.Format.Utils do
     Apex.Format.Color.colorize(str, data, options)
   end
 
+  def separator_line(str, length \\ 100) do
+    Stream.repeatedly(fn -> str end)
+      |> Enum.take(100)
+      |> Enum.join
+      |> Apex.Format.Color.escape(:yellow)
+  end
+
   def next_indent_level(options) do
     Keyword.update(options, :indent_level, 1, &( &1 + 1))
   end

@@ -59,6 +59,38 @@ Apex.ap data
 
 `Apex` uses a protocol internally to format a given value. If there's something not yet in the box, you can extend the protocol `Apex.Format`.
 
+### Awesome def aka adef
+Inspired by [@sasajuric](https://github.com/sasa1977)'s [awesome blog post series about macros](http://www.theerlangelist.com/search/label/metaprogramming), Apex also contains an Apex flavored version of his `deftracable` macro. By using `adef` instead of `def` 
+
+```elixir
+import Apex.AwesomeDef
+adef test(data, options \\ []) do
+  data
+end
+```
+
+all function invocations print trace outputs in the following format to the group leader (console):
+
+```bash
+iex(1)> Apex.test "foo"
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Function Elixir.Apex.test was called
+defined in /Users/bjoernrochel/Coding/Laboratory/apex/lib/apex.ex:12
+----------------------------------------------------------------------------------------------------
+Parameters:
+----------------------------------------------------------------------------------------------------
+[
+  [0] "foo"
+  [1] [
+  ]
+]
+
+----------------------------------------------------------------------------------------------------
+Result:
+----------------------------------------------------------------------------------------------------
+"foo"
+```
+
 ### Note on Patches/Pull Requests ###
 * Fork the project on Github.
 * Make your feature addition or bug fix.
