@@ -23,7 +23,7 @@ defimpl Apex.Format, for: Float do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize("#{float_to_binary(data, decimals: 15, compact: true)}", data, options) <> new_line
+    colorize("#{Float.to_string(data, decimals: 15, compact: true)}", data, options) <> new_line
   end
 end
 

@@ -43,7 +43,7 @@ defmodule Apex.Format.Color do
         "\e[1;#{30+@index}m#{text}\e[0m"
       end
 
-      def do_escape(text, unquote(binary_to_atom("#{color}ish"))) do
+      def do_escape(text, unquote(String.to_atom("#{color}ish"))) do
         "\e[0;#{30+@index}m#{text}\e[0m"
       end
   end

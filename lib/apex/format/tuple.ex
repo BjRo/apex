@@ -11,11 +11,11 @@ defimpl Apex.Format, for: Tuple do
   end
 
   defp do_format(data, options) do
-    seq = tuple_to_list(data)
+    seq = Tuple.to_list(data)
     if is_atom(hd(seq)) do
       Seq.format(tl(seq), options, start_token: "#{hd(seq)}{", end_token: "}")
     else
-      Seq.format(tuple_to_list(data), options, start_token: "{", end_token: "}")
+      Seq.format(Tuple.to_list(data), options, start_token: "{", end_token: "}")
     end
   end
 end
