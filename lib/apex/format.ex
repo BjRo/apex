@@ -31,7 +31,7 @@ defimpl Apex.Format, for: Atom do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize("#{data}", data, options) <> new_line
+    colorize(Atom.to_string(data), data, options) <> new_line
   end
 end
 

@@ -7,44 +7,20 @@ defmodule Apex.Format.Color do
     end
   end
 
-  def escape(text, color), do: do_escape(text, color)
+  def escape(text, color) do
+    IO.ANSI.format([color, text], true) |> IO.chardata_to_string
+  end
 
-  defp color(data) when is_binary(data),   do: :yellowish
+  defp color(data) when is_binary(data),   do: :yellow
   defp color(data) when is_tuple(data),    do: :blue
-  defp color(data) when is_atom(data),     do: :cyanish
+  defp color(data) when is_atom(data),     do: :cyan
   defp color(data) when is_float(data),    do: :blue
   defp color(data) when is_integer(data),  do: :blue
-  defp color(data) when is_function(data), do: :purpleish
+  defp color(data) when is_function(data), do: :magenta
   defp color(data) when is_list(data),     do: :white
   defp color(data) when is_pid(data),      do: :yellow
-  defp color({Range, _, _}),               do: :greenish
-  defp color({HashSet, _, _}),             do: :whiteish
-  defp color({HashDict, _, _}),            do: :whiteish
-  defp color(nil),                         do: :red
+  defp color({Range, _, _}),               do: :green
+  defp color({HashSet, _, _}),             do: :white
+  defp color({HashDict, _, _}),            do: :white
   defp color(_), do: nil
-
-  #   \e => escape
-  #   30 => color base
-  #    1 => bright
-  #    0 => normal
-  [
-    :gray,
-    :red,
-    :green,
-    :yellow,
-    :blue,
-    :purple,
-    :cyan,
-    :white
-  ] |> Stream.with_index |> Enum.each fn {color, index} ->
-      @index index
-
-      def do_escape(text, unquote(color)) do
-        "\e[1;#{30+@index}m#{text}\e[0m"
-      end
-
-      def do_escape(text, unquote(String.to_atom("#{color}ish"))) do
-        "\e[0;#{30+@index}m#{text}\e[0m"
-      end
-  end
 end

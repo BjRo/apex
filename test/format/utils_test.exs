@@ -27,6 +27,6 @@ defmodule Apex.Format.Utils.Test do
   end
 
   test "#colorize should color when it's asked for it" do
-    assert colorize("A", 1)  == "\e[1;34mA\e[0m"
+    assert colorize("A", 1)  == "\e[34mA\e[0m"
   end
 end
