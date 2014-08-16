@@ -9,9 +9,7 @@ defmodule Apex.Format.Utils do
   end
 
   def separator_line(str, length \\ 100) do
-    Stream.repeatedly(fn -> str end)
-      |> Enum.take(length)
-      |> Enum.join
+    String.duplicate(str, length)
       |> Apex.Format.Color.escape(:yellow)
   end
 
@@ -20,18 +18,14 @@ defmodule Apex.Format.Utils do
   end
 
   def indent(options) do
-     0..(level(options) * step(options))
-      |> Enum.uniq
-      |> Enum.drop(1)
-      |> Enum.map(fn(_) -> "\s" end)
-      |> Enum.join
+    String.duplicate("\s", level(options) * step(options))
   end
 
   defp step(options) do
-    options[:indent] || @default_indent
+    Keyword.get(options, :indent, @default_indent)
   end
 
   defp level(options)  do
-    Keyword.get(options, :indent_level) || @default_level
+    Keyword.get(options, :indent_level, @default_level)
   end
 end
