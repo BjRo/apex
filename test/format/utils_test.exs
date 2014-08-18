@@ -29,4 +29,8 @@ defmodule Apex.Format.Utils.Test do
   test "#colorize should color when it's asked for it" do
     assert colorize("A", 1)  == "\e[34mA\e[0m"
   end
+
+  test "#separator_line" do
+    assert separator_line("-", 5) == "\e[33m-----\e[0m"
+  end
 end
