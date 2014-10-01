@@ -4,7 +4,7 @@ exposing their internal structure with proper indentation. It's a port of part o
 of Ruby's awesome [awesome_print gem](https://github.com/michaeldv/awesome_print).
 
 ### Installation ###
-In oder to install it via hex, add the reference to this package into the `deps` area of your `mix.exs`.
+In order to install it via hex, add the reference to this package into the `deps` area of your `mix.exs`.
 
 ```elixir
   defp deps do
