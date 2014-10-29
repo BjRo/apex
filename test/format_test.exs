@@ -48,6 +48,10 @@ defmodule Apex.Format.Test do
     """
   end
 
+  test "Can format empty tuples" do
+    assert format({}, color: false) == "{}"
+  end
+
   test "Can format tuples that don't start with an atom" do
     assert format({1, "John", 1, true}, color: false) == """
     {
