@@ -3,6 +3,14 @@ defprotocol Apex.Format do
   def format(data, options \\ [])
 end
 
+defimpl Apex.Format, for: Reference do
+  import Apex.Format.Utils
+
+  def format(data, options \\ []) do
+    colorize(inspect(data), data, options) <> new_line
+  end
+end
+
 defimpl Apex.Format, for: BitString do
   import Apex.Format.Utils
 

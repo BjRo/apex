@@ -2,6 +2,11 @@ defmodule Apex.Format.Test do
   use ExUnit.Case
   import Apex.Format
 
+  test "Can format references" do
+    reference = make_ref
+    assert format(reference, color: false) =~ ~r/#Reference<\d\.\d\.\d\.\d+>/
+  end
+
   test "Can format a list of strings" do
     assert format(~w(a b c d), color: false) == """
     [
