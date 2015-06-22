@@ -54,6 +54,7 @@ Apex.ap data
 * HashSet
 * Map
 * Tuple
+* Reference
 * Elixir Records
 * Elixir Structs
 
