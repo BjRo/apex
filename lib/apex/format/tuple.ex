@@ -10,7 +10,7 @@ defimpl Apex.Format, for: Tuple do
     colorize("#{key}: ", key, options) <> Apex.Format.format(value, options)
   end
 
-  defp do_format({}, options), do: "{}" <> new_line
+  defp do_format({}, _options), do: "{}" <> new_line
   defp do_format(data, options) do
     seq = Tuple.to_list(data)
     if is_atom(hd(seq)) do
