@@ -25,7 +25,7 @@ defmodule Apex.Mixfile do
 
   def package do
     [
-      contributors: ["Bjoern Rochel"],
+      maintainers: ["Bjoern Rochel"],
       licenses: ["The MIT License"],
       links: %{
         "GitHub" => "https://github.com/bjro/apex"
