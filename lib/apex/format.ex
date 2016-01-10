@@ -15,7 +15,12 @@ defimpl Apex.Format, for: BitString do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize("\"#{data}\"", data, options) <> new_line
+    case String.valid?(data) do
+      true ->
+        colorize("\"#{data}\"", data, options) <> new_line
+      false ->
+        colorize("#{inspect data}", data, options) <> new_line
+    end
   end
 end
 
