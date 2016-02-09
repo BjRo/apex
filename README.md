@@ -9,7 +9,7 @@ In order to install it via hex, add the reference to this package into the `deps
 ```elixir
   defp deps do
     [
-      {:apex, "~>0.3.5"}
+      {:apex, "~>0.3.7"}
     ]
   end
 ```
