@@ -23,12 +23,12 @@ Apex.ap data
 
 # Will output the following:
 #[
-#   [0] false,
-#   [1] 42,
+#   [0] false
+#   [1] 42
 #   [2] [
-#     [0] "forty",
+#     [0] "forty"
 #     [1] "two"
-#   ],
+#   ]
 #   [3] [
 #     [0] time: "now"
 #   ]
@@ -37,8 +37,10 @@ Apex.ap data
 #   }
 #]
 #
-#:ok
+#[false, 42, ~w(forty two), [time: "now"], %{foo: :bar}]
 ```
+
+If the numbering is not for you, you can turn it off via `Apex.ap(data, numbers: false)`.
 
 ### Supported types
 

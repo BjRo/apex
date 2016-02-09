@@ -15,7 +15,7 @@ defmodule Apex.Format.Seq do
   end
 
   defp do_format({entry, i}, options, config) do
-    number = if numbers?(config) do
+    number = if numbers?(options, config) do
       colorize("[#{i}] ", @list, options)
     else
       ""
@@ -25,5 +25,11 @@ defmodule Apex.Format.Seq do
 
   defp start_token(config), do: config[:start_token] || "["
   defp end_token(config), do: config[:end_token] || "]"
-  defp numbers?(config), do: config[:numbers] != false
+  defp numbers?(options, config) do
+    if options[:numbers] == false do
+      false
+    else
+      config[:numbers] != false
+    end
+  end
 end

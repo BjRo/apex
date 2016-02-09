@@ -133,4 +133,25 @@ defmodule Apex.Format.Test do
     }
     """
   end
+
+  test "Can turn off list numbering" do
+    data = [false, 42, ~w(forty two), [time: "now"], %{foo: :bar}]
+
+    assert format(data, numbers: false, color: false) == """
+    [
+      false
+      42
+      [
+        "forty"
+        "two"
+      ]
+      [
+        time: "now"
+      ]
+      %{
+        foo: bar
+      }
+    ]
+    """
+  end
 end
