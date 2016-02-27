@@ -2,6 +2,15 @@ defmodule Apex.Format.Seq do
   import Apex.Format.Utils
   @list []
 
+  def format_set(name, data, options \\ []) do
+    format(
+      Set.to_list(data) |> Enum.sort,
+      options,
+      start_token: "#{name}<[",
+      end_token: "]>",
+      numbers: false) |> colorize(data, options)
+  end
+
   def format(data, options, config \\ []) do
     pre  =  start_token(config) <> new_line
     post =  indent(options) <> end_token(config) <> new_line

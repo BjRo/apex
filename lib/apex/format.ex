@@ -92,15 +92,14 @@ defimpl Apex.Format, for: HashDict do
 end
 
 defimpl Apex.Format, for: HashSet do
-  import Apex.Format.Utils
-
   def format(data, options \\ []) do
-    Apex.Format.Seq.format(
-      Set.to_list(data),
-      options,
-      start_token: "HashSet<[",
-      end_token: "]>",
-      numbers: false) |> colorize(data, options)
+    Apex.Format.Seq.format_set("HashSet", data, options)
+  end
+end
+
+defimpl Apex.Format, for: MapSet do
+  def format(data, options \\ []) do
+    Apex.Format.Seq.format_set("MapSet", data, options)
   end
 end
 

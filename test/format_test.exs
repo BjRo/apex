@@ -97,8 +97,18 @@ defmodule Apex.Format.Test do
     set = HashSet.new |> HashSet.put(:foo) |> HashSet.put(:baz)
     assert format(set, color: false) == """
     HashSet<[
-      foo
       baz
+      foo
+    ]>
+    """
+  end
+
+  test "Can format MapSets" do
+    set = MapSet.new |> MapSet.put(:foo) |> MapSet.put(:baz)
+    assert format(set, color: false) == """
+    MapSet<[
+      baz
+      foo
     ]>
     """
   end
