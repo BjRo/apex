@@ -4,7 +4,7 @@ defmodule Apex.Mixfile do
   def project do
     [ app: :apex,
       version: "0.4.0",
-      elixir: "~> 1.2.0",
+      elixir: "~> 1.2",
       build_per_environment: false,
       description: description,
       package: package,
