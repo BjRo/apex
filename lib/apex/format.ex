@@ -70,6 +70,14 @@ defimpl Apex.Format, for: PID do
   end
 end
 
+defimpl Apex.Format, for: Port do
+  import Apex.Format.Utils
+
+  def format(data, options \\ []) do
+    colorize(inspect(data), data, options) <> new_line
+  end
+end
+
 defimpl Apex.Format, for: Function do
   import Apex.Format.Utils
 

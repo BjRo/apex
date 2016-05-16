@@ -19,6 +19,7 @@ defmodule Apex.Format.Color do
   defp color(data) when is_function(data), do: :magenta
   defp color(data) when is_list(data),     do: :white
   defp color(data) when is_pid(data),      do: :yellow
+  defp color(data) when is_port(data),     do: [:green, :bright]
   defp color({Range, _, _}),               do: :green
   defp color({HashSet, _, _}),             do: :white
   defp color({HashDict, _, _}),            do: :white
