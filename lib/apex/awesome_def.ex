@@ -16,8 +16,8 @@ defmodule Apex.AwesomeDef do
         ap_result = unquote(body[:do])
 
         IO.puts separator_line(">")
-        IO.puts "Function " <> escape("#{ap_module}.#{ap_function_name}", :cyanish) <> " was called"
-        IO.puts "defined in " <> escape("#{ap_file}:#{ap_line}", :cyanish)
+        IO.puts "Function " <> escape("#{ap_module}.#{ap_function_name}", :cyan) <> " was called"
+        IO.puts "defined in " <> escape("#{ap_file}:#{ap_line}", :cyan)
         IO.puts separator_line("-")
         IO.puts "Parameters:"
         IO.puts separator_line("-")
@@ -49,8 +49,7 @@ defmodule Apex.AwesomeDef do
   defp decorate_args(args_ast) do
     Enum.with_index(args_ast)
       |> Enum.map(&decorate_arg/1)
-      |> List.unzip
-      |> List.to_tuple
+      |> Enum.unzip
   end
 
   defp decorate_arg({arg_ast, index}) do
