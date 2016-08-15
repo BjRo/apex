@@ -43,8 +43,14 @@ end
 defimpl Apex.Format, for: Atom do
   import Apex.Format.Utils
 
-  def format(data, options \\ []) do
+  def format(data, options \\ [])
+
+  def format(data, options) when data in [true, false, nil] do
     colorize(Atom.to_string(data), data, options) <> new_line
+  end
+
+  def format(data, options) do
+    colorize(":" <> Atom.to_string(data), data, options) <> new_line
   end
 end
 

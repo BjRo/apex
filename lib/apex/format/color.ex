@@ -13,6 +13,9 @@ defmodule Apex.Format.Color do
 
   defp color(data) when is_binary(data),   do: :yellow
   defp color(data) when is_tuple(data),    do: :blue
+  defp color(true),                        do: [:green, :bright]
+  defp color(false),                       do: [:red, :bright]
+  defp color(nil),                         do: :red
   defp color(data) when is_atom(data),     do: :cyan
   defp color(data) when is_float(data),    do: :blue
   defp color(data) when is_integer(data),  do: :blue
