@@ -101,8 +101,8 @@ defmodule Apex.Format.Test do
     set = HashSet.new |> HashSet.put(:foo) |> HashSet.put(:baz)
     assert format(set, color: false) == """
     HashSet<[
-      baz
-      foo
+      :baz
+      :foo
     ]>
     """
   end
@@ -111,8 +111,8 @@ defmodule Apex.Format.Test do
     set = MapSet.new |> MapSet.put(:foo) |> MapSet.put(:baz)
     assert format(set, color: false) == """
     MapSet<[
-      baz
-      foo
+      :baz
+      :foo
     ]>
     """
   end
@@ -163,7 +163,7 @@ defmodule Apex.Format.Test do
         time: "now"
       ]
       %{
-        foo: bar
+        foo: :bar
       }
     ]
     """
