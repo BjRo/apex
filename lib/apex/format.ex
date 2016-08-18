@@ -43,13 +43,27 @@ end
 defimpl Apex.Format, for: Atom do
   import Apex.Format.Utils
 
-  def format(data, options \\ []) do
+  def format(data, options \\ [])
+
+  def format(data, options) when data in [true, false, nil] do
     colorize(Atom.to_string(data), data, options) <> new_line
+  end
+
+  def format(data, options) do
+    colorize(":" <> Atom.to_string(data), data, options) <> new_line
   end
 end
 
 defimpl Apex.Format, for: List do
-  def format(data, options \\ []) do
+  import Apex.Format.Utils
+
+  def format(data, options \\ [])
+
+  def format([], options) do
+    colorize("[]", [], options) <> new_line
+  end
+
+  def format(data, options) do
     Apex.Format.Seq.format(data, options)
   end
 end
@@ -114,7 +128,13 @@ end
 defimpl Apex.Format, for: Map do
   import Apex.Format.Utils
 
-  def format(data, options \\ []) do
+  def format(data, options \\ [])
+
+  def format(data, options) when data == %{} do
+    colorize("%{}", %{}, options) <> new_line
+  end
+
+  def format(data, options) do
     Apex.Format.Seq.format(
       Map.to_list(data),
       options,
