@@ -64,8 +64,31 @@ If the numbering is not for you, you can turn it off via `Apex.ap(data, numbers:
 
 `Apex` uses a protocol internally to format a given value. If there's something not yet in the box, you can extend the protocol `Apex.Format`.
 
+### Color customizations
+
+You can drop a `.apexrc` file into your home directory in order to further configure `Apex`. One
+usecase where this might be useful is color customization across multiple projects. If
+you want to use different colors than the ones `Apex` uses by default you can tweak
+them in the `.apexrc` file.
+
+```elixir
+%{
+  colors: %{
+    binary: :yellow,
+    true:   [:green, :bright]
+  }
+}
+```
+
+You will only have to specify the colors you actively want to change here. For
+the rest `Apex` will fallback to the defaults. For a full list of all
+available customizations, please take a look at the result of `Apex.Format.Color.default_colors/0)`.
+
+The result of your customization will be compiled into your `Apex` depencency, when
+you do a `mix deps.compile`.
+
 ### Awesome def aka adef
-Inspired by [@sasajuric](https://github.com/sasa1977)'s [awesome blog post series about macros](http://www.theerlangelist.com/search/label/metaprogramming), Apex also contains an Apex flavored version of his `deftracable` macro. By using `adef` instead of `def` 
+Inspired by [@sasajuric](https://github.com/sasa1977)'s [awesome blog post series about macros](http://www.theerlangelist.com/search/label/metaprogramming), Apex also contains an Apex flavored version of his `deftracable` macro. By using `adef` instead of `def`
 
 ```elixir
 import Apex.AwesomeDef
@@ -101,7 +124,7 @@ Result:
 * Add tests for it, making sure $ mix test is all green.
 * Do not rebase other commits than your own
 * Do not change the version in the mix file
-* Commit 
+* Commit
 * Send me a pull request
 
 ### License ###

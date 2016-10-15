@@ -33,8 +33,12 @@ defmodule Apex.Format.Color do
     hash_dict: :white
   }
 
+  def default_colors do
+    @default_colors
+  end
+
   def default_color(id) do
-    Map.get(@default_colors, id)
+    Map.get(default_colors, id)
   end
 
   def customization_file do
