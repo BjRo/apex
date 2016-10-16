@@ -65,11 +65,24 @@ If the numbering is not for you, you can turn it off via `Apex.ap(data, numbers:
 `Apex` uses a protocol internally to format a given value. If there's something not yet in the box, you can extend the protocol `Apex.Format`.
 
 ### Color customizations
+You can customize the `Apex` colors on a per project or global basis. For project
+specific color configuration, you can specify the color table in your `config/config.ex`
 
-You can drop a `.apexrc` file into your home directory in order to further configure `Apex`. One
-usecase where this might be useful is color customization across multiple projects. If
-you want to use different colors than the ones `Apex` uses by default you can tweak
-them in the `.apexrc` file.
+```elixir
+use Mix.Config
+
+config :apex, :colors, %{
+  binary: :red
+}
+```
+
+This can alternatively also be done at runtime by using the `Application.put_env/3` function.
+
+Please note, that you only have to specify the colors you actively want to change here. For
+the rest `Apex` will fallback to the defaults.
+
+If you want to apply the same settings across multiple elixir projects, you can drop a `.apexrc`
+file into your home directory in order do the same thing. The configuration is an `Elixir` Map.
 
 ```elixir
 %{
@@ -80,12 +93,14 @@ them in the `.apexrc` file.
 }
 ```
 
-You will only have to specify the colors you actively want to change here. For
-the rest `Apex` will fallback to the defaults. For a full list of all
-available customizations, please take a look at the result of `Apex.Format.Color.default_colors/0)`.
+__IMPORTANT:__ the global configuration will get compiled into your `Apex` version when
+you compile your app. You need to recompile `Apex` via `mix deps.compile apex` when
+you want to apply changes to the `.apexrc` file.
 
-The result of your customization will be compiled into your `Apex` depencency, when
-you do a `mix deps.compile`.
+__PRECEDENCE:__ When both project specific and global configuration
+are present, project specific configuration will take precedence.
+
+For a full list of all available customizations, please take a look at the result of `Apex.Format.Color.default_colors/0)`.
 
 ### Awesome def aka adef
 Inspired by [@sasajuric](https://github.com/sasa1977)'s [awesome blog post series about macros](http://www.theerlangelist.com/search/label/metaprogramming), Apex also contains an Apex flavored version of his `deftracable` macro. By using `adef` instead of `def`
