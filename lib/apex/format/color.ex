@@ -47,7 +47,7 @@ defmodule Apex.Format.Color do
 
   def load_color_customizations_from_apexrc do
     with {:ok, contents }        <- File.read(customization_file),
-         {%{colors: colors}, _}  <- Code.eval_string(contents, [], __ENV__) do
+         {%{colors: colors}, _}  when is_map(colors) <- Code.eval_string(contents, [], __ENV__) do
            colors
          else
            _ -> %{}
