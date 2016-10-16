@@ -45,7 +45,7 @@ defmodule Apex.Format.Color do
     Path.expand("~/.apexrc")
   end
 
-  def load_color_customizations do
+  def load_color_customizations_from_apexrc do
     with {:ok, contents }        <- File.read(customization_file),
          {%{colors: colors}, _}  <- Code.eval_string(contents, [], __ENV__) do
            colors
@@ -55,7 +55,7 @@ defmodule Apex.Format.Color do
   end
 
   defmacro __using__(_) do
-    user_defined_colors = __MODULE__.load_color_customizations
+    user_defined_colors_from_apexrc = __MODULE__.load_color_customizations_from_apexrc
 
     quote do
       import unquote(__MODULE__)
@@ -76,13 +76,19 @@ defmodule Apex.Format.Color do
       defp do_colorize(_id, text, false),  do: text
       defp do_colorize(:unknown, text, _), do: text
       defp do_colorize({:ok, id}, text, _) do
-        color = user_defined_color(id) || default_color(id)
+        color = user_defined_color_app_config(id) || user_defined_color_apexrc(id) || default_color(id)
         escape(text, color)
       end
 
-      @color_customizations unquote(Macro.escape(user_defined_colors))
-      defp user_defined_color(id) do
-        Map.get(@color_customizations, id)
+      @user_defined_colors_from_apexrc unquote(Macro.escape(user_defined_colors_from_apexrc))
+      defp user_defined_color_apexrc(id) do
+        Map.get(@user_defined_colors_from_apexrc, id)
+      end
+
+      defp user_defined_color_app_config(id) do
+        :apex
+          |> Application.get_env(:colors, %{})
+          |> Map.get(id)
       end
     end
   end
