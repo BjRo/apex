@@ -1,6 +1,5 @@
 defmodule Apex.AwesomeDef do
   import Apex.Format.Utils
-  import Apex.Format.Color
 
   defmacro adef(head, body) do
     {fun_name, args_ast} = name_and_args(head)
