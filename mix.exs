@@ -6,9 +6,9 @@ defmodule Apex.Mixfile do
       version: "0.6.0",
       elixir: "~> 1.2 or ~> 1.3",
       build_per_environment: false,
-      description: description,
-      package: package,
-      deps: deps ]
+      description: description(),
+      package: package(),
+      deps: deps()]
   end
 
   def application do

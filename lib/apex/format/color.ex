@@ -38,7 +38,7 @@ defmodule Apex.Format.Color do
   end
 
   def default_color(id) do
-    Map.get(default_colors, id)
+    Map.get(default_colors(), id)
   end
 
   def customization_file do
@@ -46,7 +46,7 @@ defmodule Apex.Format.Color do
   end
 
   def load_color_customizations_from_apexrc do
-    with {:ok, contents }        <- File.read(customization_file),
+    with {:ok, contents }        <- File.read(customization_file()),
          {%{colors: colors}, _}  when is_map(colors) <- Code.eval_string(contents, [], __ENV__) do
            colors
          else
