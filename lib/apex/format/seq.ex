@@ -12,8 +12,8 @@ defmodule Apex.Format.Seq do
   end
 
   def format(data, options, config \\ []) do
-    pre  =  start_token(config) <> new_line
-    post =  indent(options) <> end_token(config) <> new_line
+    pre  = start_token(config) <> new_line()
+    post = indent(options) <> end_token(config) <> new_line()
     pre <> do_format(data, next_indent_level(options), config) <> post
   end
 

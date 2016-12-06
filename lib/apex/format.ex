@@ -7,7 +7,7 @@ defimpl Apex.Format, for: Reference do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize(inspect(data), data, options) <> new_line
+    colorize(inspect(data), data, options) <> new_line()
   end
 end
 
@@ -17,9 +17,9 @@ defimpl Apex.Format, for: BitString do
   def format(data, options \\ []) do
     case String.valid?(data) do
       true ->
-        colorize("\"#{data}\"", data, options) <> new_line
+        colorize("\"#{data}\"", data, options) <> new_line()
       false ->
-        colorize("#{inspect data}", data, options) <> new_line
+        colorize("#{inspect data}", data, options) <> new_line()
     end
   end
 end
@@ -28,7 +28,7 @@ defimpl Apex.Format, for: Integer do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize("#{data}", data, options) <> new_line
+    colorize("#{data}", data, options) <> new_line()
   end
 end
 
@@ -36,7 +36,7 @@ defimpl Apex.Format, for: Float do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize("#{Float.to_string(data, decimals: 15, compact: true)}", data, options) <> new_line
+    colorize("#{Float.to_string(data, decimals: 15, compact: true)}", data, options) <> new_line()
   end
 end
 
@@ -46,11 +46,11 @@ defimpl Apex.Format, for: Atom do
   def format(data, options \\ [])
 
   def format(data, options) when data in [true, false, nil] do
-    colorize(Atom.to_string(data), data, options) <> new_line
+    colorize(Atom.to_string(data), data, options) <> new_line()
   end
 
   def format(data, options) do
-    colorize(":" <> Atom.to_string(data), data, options) <> new_line
+    colorize(":" <> Atom.to_string(data), data, options) <> new_line()
   end
 end
 
@@ -60,7 +60,7 @@ defimpl Apex.Format, for: List do
   def format(data, options \\ [])
 
   def format([], options) do
-    colorize("[]", [], options) <> new_line
+    colorize("[]", [], options) <> new_line()
   end
 
   def format(data, options) do
@@ -72,7 +72,7 @@ defimpl Apex.Format, for: Range do
   import Apex.Format.Utils
 
   def format(d = %{__struct__: name, first: lower_bound, last: upper_bound}, options \\ []) do
-    colorize("##{name} #{lower_bound}..#{upper_bound}", d, options) <> new_line
+    colorize("##{name} #{lower_bound}..#{upper_bound}", d, options) <> new_line()
   end
 end
 
@@ -80,7 +80,7 @@ defimpl Apex.Format, for: PID do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize(inspect(data), data, options) <> new_line
+    colorize(inspect(data), data, options) <> new_line()
   end
 end
 
@@ -88,7 +88,7 @@ defimpl Apex.Format, for: Port do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize(inspect(data), data, options) <> new_line
+    colorize(inspect(data), data, options) <> new_line()
   end
 end
 
@@ -96,7 +96,7 @@ defimpl Apex.Format, for: Function do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize(inspect(data), data, options) <> new_line
+    colorize(inspect(data), data, options) <> new_line()
   end
 end
 
@@ -131,7 +131,7 @@ defimpl Apex.Format, for: Map do
   def format(data, options \\ [])
 
   def format(data, options) when data == %{} do
-    colorize("%{}", %{}, options) <> new_line
+    colorize("%{}", %{}, options) <> new_line()
   end
 
   def format(data, options) do
