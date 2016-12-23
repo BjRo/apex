@@ -3,12 +3,10 @@ defmodule Apex.Format.Seq do
   @list []
 
   def format_set(name, data, options \\ []) do
-    format(
-      Set.to_list(data) |> Enum.sort,
-      options,
-      start_token: "#{name}<[",
-      end_token: "]>",
-      numbers: false) |> colorize(data, options)
+    data
+     |> to_sorted_list
+     |> format(options, start_token: "#{name}<[", end_token: "]>", numbers: false)
+     |> colorize(data, options)
   end
 
   def format(data, options, config \\ []) do
@@ -29,16 +27,32 @@ defmodule Apex.Format.Seq do
     else
       ""
     end
-    indent(options) <> number <> Apex.Format.format(entry, options)
+    indent(options) <> number <> format_entry(entry, options)
+  end
+
+  defp format_entry(entry, options)
+  defp format_entry({key, value}, options) when is_atom(key) and not key in [true, false, nil] do
+    colorize("#{key}: ", key, options) <> Apex.Format.format(value, options)
+  end
+  defp format_entry(entry, options) do
+    Apex.Format.format(entry, options)
   end
 
   defp start_token(config), do: config[:start_token] || "["
+
   defp end_token(config), do: config[:end_token] || "]"
+
   defp numbers?(options, config) do
     if options[:numbers] == false do
       false
     else
       config[:numbers] != false
     end
+  end
+
+  defp to_sorted_list(data) do
+    data
+     |> Set.to_list
+     |> Enum.sort
   end
 end

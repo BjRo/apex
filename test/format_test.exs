@@ -68,6 +68,30 @@ defmodule Apex.Format.Test do
     """
   end
 
+  test "Can format tuples that start with an atom" do
+    assert format({:name, "John"}, color: false) == """
+    {
+      [0] :name
+      [1] "John"
+    }
+    """
+  end
+
+  test "Can format second level tuples in a map" do
+    map = %{
+      some_key: {:name, "John"}
+    }
+
+    assert format(map, color: false) == """
+    %{
+      some_key: {
+        [0] :name
+        [1] "John"
+      }
+    }
+    """
+  end
+
   test "Can format ranges" do
     assert format(1..2, color: false) == """
     #Elixir.Range 1..2

@@ -6,18 +6,22 @@ defimpl Apex.Format, for: Tuple do
     do_format(data, options)
   end
 
-  defp do_format({key, value}, options) when is_atom(key) and not key in [true, false, nil] do
-    colorize("#{key}: ", key, options) <> Apex.Format.format(value, options)
-  end
-
   defp do_format({}, _options), do: "{}" <> new_line()
   defp do_format(data, options) do
-    seq = Tuple.to_list(data)
-    head = hd(seq)
-    if is_atom(head) and not head in [true, false, nil] do
-      Seq.format(tl(seq), options, start_token: "#{head}{", end_token: "}")
+    [record_name | record_detail] = Tuple.to_list(data)
+
+    if looks_like_a_record?(record_name, record_detail) do
+      format_record(record_name, record_detail, options)
     else
       Seq.format(Tuple.to_list(data), options, start_token: "{", end_token: "}")
     end
+  end
+
+  defp looks_like_a_record?(name, detail)
+  defp looks_like_a_record?(name, detail) when is_atom(name) and not name in [true, false, nil] and length(detail) > 1, do: true
+  defp looks_like_a_record?(_name, _detail), do: false
+
+  defp format_record(name, detail, options) do
+    Seq.format(detail, options, start_token: "#{name}{", end_token: "}")
   end
 end
