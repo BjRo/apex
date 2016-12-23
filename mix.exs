@@ -3,7 +3,7 @@ defmodule Apex.Mixfile do
 
   def project do
     [ app: :apex,
-      version: "0.6.0",
+      version: "0.7.0",
       elixir: "~> 1.2 or ~> 1.3",
       build_per_environment: false,
       description: description(),
