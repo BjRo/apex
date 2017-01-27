@@ -3,7 +3,7 @@ defmodule Apex.Format.Test do
   import Apex.Format
 
   test "Can format references" do
-    reference = make_ref
+    reference = make_ref()
     assert format(reference, color: false) =~ ~r/#Reference<\d\.\d\.\d\.\d+>/
   end
 
@@ -99,7 +99,7 @@ defmodule Apex.Format.Test do
   end
 
   test "Can format pid" do
-    assert format(self, color: false) =~ ~r(#PID<0.\d+.0>\n)
+    assert format(self(), color: false) =~ ~r(#PID<0.\d+.0>\n)
   end
 
     test "Can format port" do
