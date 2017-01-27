@@ -111,16 +111,6 @@ defmodule Apex.Format.Test do
     assert format(f, color: false) =~ ~r(#Function<0.\d+/1 in Apex.Format.Test.test Can format function/1>\n)
   end
 
-  test "Can format Dicts" do
-    dict = HashDict.new |> Dict.put(:foo, "bar") |> Dict.put(:baz, "fizz")
-    assert format(dict, color: false) == """
-    HashDict<[
-      foo: "bar"
-      baz: "fizz"
-    ]>
-    """
-  end
-
   test "Can format HashSets" do
     set = HashSet.new |> HashSet.put(:foo) |> HashSet.put(:baz)
     assert format(set, color: false) == """
