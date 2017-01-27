@@ -9,7 +9,7 @@ In order to install it via hex, add the reference to this package into the `deps
 ```elixir
   defp deps do
     [
-      {:apex, "~>0.7.0"}
+      {:apex, "~>1.0.0"}
     ]
   end
 ```
@@ -53,8 +53,6 @@ If the numbering is not for you, you can turn it off via `Apex.ap(data, numbers:
 * PID
 * Port
 * Function
-* HashDict
-* HashSet
 * MapSet
 * Map
 * Tuple
