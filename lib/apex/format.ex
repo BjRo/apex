@@ -36,7 +36,7 @@ defimpl Apex.Format, for: Float do
   import Apex.Format.Utils
 
   def format(data, options \\ []) do
-    colorize("#{Float.to_string(data, decimals: 15, compact: true)}", data, options) <> new_line()
+    colorize("#{:erlang.float_to_binary(data, [:compact, decimals: 15])}", data, options) <> new_line()
   end
 end
 
