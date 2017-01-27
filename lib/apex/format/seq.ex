@@ -52,7 +52,7 @@ defmodule Apex.Format.Seq do
 
   defp to_sorted_list(data) do
     data
-     |> Set.to_list
+     |> MapSet.to_list
      |> Enum.sort
   end
 end

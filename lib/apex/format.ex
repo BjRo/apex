@@ -100,12 +100,6 @@ defimpl Apex.Format, for: Function do
   end
 end
 
-defimpl Apex.Format, for: HashSet do
-  def format(data, options \\ []) do
-    Apex.Format.Seq.format_set("HashSet", data, options)
-  end
-end
-
 defimpl Apex.Format, for: MapSet do
   def format(data, options \\ []) do
     Apex.Format.Seq.format_set("MapSet", data, options)

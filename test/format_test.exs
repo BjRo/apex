@@ -111,16 +111,6 @@ defmodule Apex.Format.Test do
     assert format(f, color: false) =~ ~r(#Function<0.\d+/1 in Apex.Format.Test.test Can format function/1>\n)
   end
 
-  test "Can format HashSets" do
-    set = HashSet.new |> HashSet.put(:foo) |> HashSet.put(:baz)
-    assert format(set, color: false) == """
-    HashSet<[
-      :baz
-      :foo
-    ]>
-    """
-  end
-
   test "Can format MapSets" do
     set = MapSet.new |> MapSet.put(:foo) |> MapSet.put(:baz)
     assert format(set, color: false) == """
