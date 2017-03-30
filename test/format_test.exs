@@ -198,6 +198,33 @@ defmodule Apex.Format.Test do
     """
   end
 
+  test "Can format maps and change keys to atoms (mixed)" do
+    data = %{
+      foo: "bar",
+      bar: "baz",
+      mappings: [
+          %{ "foo1" => "bar1", "bar1" => "baz1" },
+          %{ "foo2" => "bar2", "bar2" => "baz2" }
+      ]
+    }
+    assert format(data, keys_to_atoms: true, color: false) == """
+    %{
+      bar: "baz"
+      foo: "bar"
+      mappings: [
+        [0] %{
+          bar1: "baz1"
+          foo1: "bar1"
+        }
+        [1] %{
+          bar2: "baz2"
+          foo2: "bar2"
+        }
+      ]
+    }
+    """
+  end
+
   test "Can format maps and leave keys as is" do
     data = %{"foo" => "bar", "bar" => "baz",
       "mappings" => [

@@ -132,7 +132,15 @@ defimpl Apex.Format, for: Map do
   defp convert_keys_to_atoms(data, options) do
     data =
     if keys_to_atoms?(options) do
-      Map.new(data, fn {k,v} -> {String.to_atom(k), v} end)
+      Map.new(data, fn {k,v} ->
+        {
+          case is_atom(k) do
+            true -> k
+            false -> String.to_atom(k)
+          end,
+          v
+        }
+         end)
     else
       data
     end
