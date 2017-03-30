@@ -116,12 +116,26 @@ defimpl Apex.Format, for: Map do
   end
 
   def format(data, options) do
+    data = convert_keys_to_atoms(data, options)
     Apex.Format.Seq.format(
       Map.to_list(data),
       options,
       start_token: "\%{",
       end_token: "}",
       numbers: false) |> colorize(data, options)
+  end
+
+  defp keys_to_atoms?(options) do
+    options[:keys_to_atoms] == true
+  end
+
+  defp convert_keys_to_atoms(data, options) do
+    data =
+    if keys_to_atoms?(options) do
+      Map.new(data, fn {k,v} -> {String.to_atom(k), v} end)
+    else
+      data
+    end
   end
 end
 
