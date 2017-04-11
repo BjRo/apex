@@ -128,7 +128,7 @@ defimpl Apex.Format, for: Map do
         start_token: "\%{",
         end_token: "}",
         numbers: false)
-    |> colorize(data, options)
+    |> colorize(data, ap_options)
   end
 
   defp keys_to_atoms(data, shouldConvert)
