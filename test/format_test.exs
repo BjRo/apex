@@ -4,7 +4,7 @@ defmodule Apex.Format.Test do
 
   test "Can format references" do
     reference = make_ref()
-    assert format(reference, color: false) =~ ~r/#Reference<\d\.\d\.\d\.\d+>/
+    assert format(reference, color: false) =~ ~r/#Reference<\d+\.\d+\.\d+\.\d+>/
   end
 
   test "Can format a list of strings" do
@@ -108,7 +108,7 @@ defmodule Apex.Format.Test do
 
   test "Can format function" do
     f = fn(a) -> "#{a}" end
-    assert format(f, color: false) =~ ~r(#Function<0.\d+/1 in Apex.Format.Test.test Can format function/1>\n)
+    assert format(f, color: false) =~ ~r(#Function<0.\d+/1 in Apex.Format.Test."test Can format function"/1>\n)
   end
 
   test "Can format MapSets" do
