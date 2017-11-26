@@ -6,7 +6,10 @@ defmodule Apex do
   """
   def ap(data, options \\ []) do
     formatted = Apex.Format.format(data, options)
-    IO.puts(formatted)
+    case Keyword.get(options, :label) do
+      nil -> IO.puts(formatted)
+      label -> IO.puts(label <> ": " <> formatted)
+    end
     data
   end
 end
