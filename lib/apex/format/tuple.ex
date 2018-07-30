@@ -18,7 +18,7 @@ defimpl Apex.Format, for: Tuple do
   end
 
   defp looks_like_a_record?(name, detail)
-  defp looks_like_a_record?(name, detail) when is_atom(name) and not name in [true, false, nil] and length(detail) > 1, do: true
+  defp looks_like_a_record?(name, detail) when is_atom(name) and not(name in [true, false, nil]) and length(detail) > 1, do: true
   defp looks_like_a_record?(_name, _detail), do: false
 
   defp format_record(name, detail, options) do

@@ -31,7 +31,7 @@ defmodule Apex.Format.Seq do
   end
 
   defp format_entry(entry, options)
-  defp format_entry({key, value}, options) when is_atom(key) and not key in [true, false, nil] do
+  defp format_entry({key, value}, options) when is_atom(key) and not(key in [true, false, nil]) do
     colorize("#{key}: ", key, options) <> Apex.Format.format(value, options)
   end
   defp format_entry(entry, options) do
