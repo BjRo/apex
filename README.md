@@ -9,7 +9,7 @@ In order to install it via hex, add the reference to this package into the `deps
 ```elixir
   defp deps do
     [
-      {:apex, "~>1.2.0"}
+      {:apex, "~>1.2.1"}
     ]
   end
 ```
@@ -143,7 +143,7 @@ Result:
 ### License ###
 (The MIT License)
 
-Copyright (c) 2014-2017 Björn Rochel
+Copyright (c) 2014-2018 Björn Rochel
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
