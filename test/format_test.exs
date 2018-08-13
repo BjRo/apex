@@ -172,4 +172,103 @@ defmodule Apex.Format.Test do
     ]
     """
   end
+
+  test "Can format maps and change keys to atoms" do
+    data = %{"foo" => "bar", "bar" => "baz",
+      "mappings" => [
+          %{"foo1" => "bar1", "bar1" => "baz1" },
+          %{"foo2" => "bar2", "bar2" => "baz2" }
+      ]
+    }
+    assert format(data, keys_to_atoms: true, color: false) == """
+    %{
+      bar: "baz"
+      foo: "bar"
+      mappings: [
+        [0] %{
+          bar1: "baz1"
+          foo1: "bar1"
+        }
+        [1] %{
+          bar2: "baz2"
+          foo2: "bar2"
+        }
+      ]
+    }
+    """
+  end
+
+  test "Can format maps and change keys to atoms (mixed)" do
+    data = %{
+      foo: "bar",
+      bar: "baz",
+      mappings: [
+          %{ "foo1" => "bar1", "bar1" => "baz1" },
+          %{ "foo2" => "bar2", "bar2" => "baz2" }
+      ]
+    }
+    assert format(data, keys_to_atoms: true, color: false) == """
+    %{
+      bar: "baz"
+      foo: "bar"
+      mappings: [
+        [0] %{
+          bar1: "baz1"
+          foo1: "bar1"
+        }
+        [1] %{
+          bar2: "baz2"
+          foo2: "bar2"
+        }
+      ]
+    }
+    """
+  end
+
+  test "Can format maps and leave keys as is" do
+    data = %{"foo" => "bar", "bar" => "baz",
+      "mappings" => [
+          %{"foo1" => "bar1", "bar1" => "baz1" },
+          %{"foo2" => "bar2", "bar2" => "baz2" }
+      ]
+    }
+    assert format(data, keys_to_atoms: false, color: false) == """
+    %{
+      {
+        [0] "bar"
+        [1] "baz"
+      }
+      {
+        [0] "foo"
+        [1] "bar"
+      }
+      {
+        [0] "mappings"
+        [1] [
+          [0] %{
+            {
+              [0] "bar1"
+              [1] "baz1"
+            }
+            {
+              [0] "foo1"
+              [1] "bar1"
+            }
+          }
+          [1] %{
+            {
+              [0] "bar2"
+              [1] "baz2"
+            }
+            {
+              [0] "foo2"
+              [1] "bar2"
+            }
+          }
+        ]
+      }
+    }
+    """
+  end
+
 end

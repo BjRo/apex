@@ -116,13 +116,30 @@ defimpl Apex.Format, for: Map do
   end
 
   def format(data, options) do
-    Apex.Format.Seq.format(
-      Map.to_list(data),
-      options,
-      start_token: "\%{",
-      end_token: "}",
-      numbers: false) |> colorize(data, options)
+    ap_options = :apex
+    |> Application.get_all_env
+    |> Keyword.merge(options)
+
+    data
+    |> keys_to_atoms(ap_options[:keys_to_atoms])
+    |> Map.to_list
+    |> Apex.Format.Seq.format(
+        ap_options,
+        start_token: "\%{",
+        end_token: "}",
+        numbers: false)
+    |> colorize(data, ap_options)
   end
+
+  defp keys_to_atoms(data, shouldConvert)
+  defp keys_to_atoms(data, true) do
+    Map.new(data, fn {k,v} -> { convert_to_atom(k), v} end)
+  end
+  defp keys_to_atoms(data, _), do: data
+
+  defp convert_to_atom(key)
+  defp convert_to_atom(key) when is_binary(key), do: String.to_atom(key)
+  defp convert_to_atom(key), do: key
 end
 
 defimpl Apex.Format, for: Any do
