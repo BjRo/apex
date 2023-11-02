@@ -55,7 +55,7 @@ defmodule Apex.Format.Color do
   end
 
   defmacro __using__(_) do
-    user_defined_colors_from_apexrc = __MODULE__.load_color_customizations_from_apexrc
+    user_defined_colors_from_apexrc = __MODULE__.load_color_customizations_from_apexrc()
 
     quote do
       import unquote(__MODULE__)
